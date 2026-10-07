@@ -8,7 +8,7 @@
 // actually reachable — your deployed Vercel URL for real use, or
 // http://localhost:8080 for local development. In unpackaged development,
 // the main project server is started automatically when this URL is down.
-// Defaults to localhost:8080 (dev) if unset.
+// Defaults to the deployed Vercel app if unset.
 const { app, BrowserWindow, Tray, Menu, globalShortcut, screen, ipcMain, nativeImage, shell, desktopCapturer, dialog } = require("electron");
 const { spawn, execFileSync } = require("node:child_process");
 const fs = require("node:fs");
@@ -16,7 +16,7 @@ const http = require("node:http");
 const https = require("node:https");
 const path = require("node:path");
 
-const APP_URL = process.env.CHIEF_APP_URL || "http://localhost:8080";
+const APP_URL = process.env.CHIEF_APP_URL || "https://chief-rho.vercel.app";
 const APP_ORIGIN = new URL(APP_URL).origin;
 const APP_ROOT = path.resolve(__dirname, "..");
 const ORB_SIZE = 64;
