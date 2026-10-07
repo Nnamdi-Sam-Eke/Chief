@@ -1,0 +1,23 @@
+{
+  "name": "chief-shell",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Floating-orb desktop shell for Chief — tray icon, always-on-top orb, global wake shortcut. Loads the real Chief web app (deployed or local dev server); this folder has no UI code of its own.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.nnamdi.chief-shell",
+    "productName": "Chief",
+    "files": ["main.js", "preload.js", "icon.png"],
+    "mac": { "category": "public.app-category.productivity" },
+    "win": { "target": "nsis" },
+    "linux": { "target": "AppImage" }
+  }
+}
