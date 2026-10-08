@@ -210,21 +210,30 @@ function toggleMainWindow() {
 
 function updateLaunchOnStartup(enabled) {
   if (typeof app.setLoginItemSettings !== "function") return;
+
+  const appPath = app.getAppPath();
   const settings = {
     openAtLogin: Boolean(enabled),
     openAsHidden: true,
     path: app.getPath("exe"),
-    args: app.isPackaged ? [] : [app.getAppPath()],
+    args: app.isPackaged ? [] : [`"${appPath}"`],
   };
+
   app.setLoginItemSettings(settings);
-  return Boolean(app.getLoginItemSettings(settings).openAtLogin) === Boolean(enabled);
+
+  return (
+    Boolean(app.getLoginItemSettings(settings).openAtLogin) ===
+    Boolean(enabled)
+  );
 }
 
 function getLaunchOnStartup() {
+  const appPath = app.getAppPath();
   const settings = {
     path: app.getPath("exe"),
-    args: app.isPackaged ? [] : [app.getAppPath()],
+    args: app.isPackaged ? [] : [`"${appPath}"`],
   };
+
   return Boolean(app.getLoginItemSettings?.(settings).openAtLogin);
 }
 
